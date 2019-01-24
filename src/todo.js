@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
 import ToDoCreate from './todocreate';
-import './todo.css';
+import ToDoList from './todolist';
 
 class ToDo extends Component {
   constructor(props){
     super(props);
     this.state = {
-      todo: [
-        {id:1, name:"食材を買いに行く"},
-        {id:2, name:"チャーハンを調理する"},
-        {id:3, name:"チャーハンを盛り付ける"}
-      ],
-      max_id: 3
+      todo: [],
+      max_id: 0
     };
 
     this.handleClick  = this.handleClick.bind(this);
@@ -30,16 +26,10 @@ class ToDo extends Component {
   }
 
   render() {
-    let list = this.state.todo.map( item =>
-                 <li key={item.id}>{item.name}</li>
-               );
-
     return(
       <div>
         <ToDoCreate onClick={this.handleClick} />
-        <ul class="todolist">
-          {list}
-        </ul>
+        <ToDoList data={this.state.todo} />
       </div>
     );
   }
