@@ -11,6 +11,7 @@ class ToDo extends Component {
     };
 
     this.handleClick  = this.handleClick.bind(this);
+    this.handleRemove = this.handleRemove.bind(this);
   }
 
   handleClick(value){
@@ -19,9 +20,18 @@ class ToDo extends Component {
     todo.push({id: id+1, name:value});
 
     this.setState({
-        newtodo: "",
         todo: todo,
         max_id: id + 1
+    });
+  }
+
+  handleRemove(e){
+    let cur  = this.state.todo;
+    let id   = Number( e.currentTarget.getAttribute("data-id") );
+    let todo = cur.filter( i => i.id !== id );
+
+    this.setState({
+      todo: todo
     });
   }
 
@@ -29,7 +39,7 @@ class ToDo extends Component {
     return(
       <div>
         <ToDoCreate onClick={this.handleClick} />
-        <ToDoList data={this.state.todo} />
+        <ToDoList data={this.state.todo} remove={this.handleRemove}/>
       </div>
     );
   }

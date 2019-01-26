@@ -8,7 +8,7 @@ class ToDoCreate extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleClick  = this.handleClick.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(e){
@@ -17,16 +17,25 @@ class ToDoCreate extends Component {
     });
   }
 
-  handleClick(){
-    this.props.onClick(this.state.newtodo);
-    this.setState({newtodo:""});
+  handleSubmit(e){
+    e.preventDefault();
+
+    let newtodo = this.state.newtodo;
+    if(newtodo === "" || newtodo.length < 2){
+      return(false);
+    }
+
+    if(newtodo !== "" && window.confirm("本当に登録しますか？")){
+      this.props.onClick(newtodo);
+      this.setState({newtodo:""});
+    }
   }
 
   render(){
     return(
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <input type="text" value={this.state.newtodo} onChange={this.handleChange}/>
-        <input type="button" value="追加" onClick={this.handleClick} />
+        <button>追加</button>
       </form>
     );
   }

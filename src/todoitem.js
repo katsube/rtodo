@@ -5,7 +5,10 @@ class ToDoItem extends Component {
     let id   = this.props.item.id;
     let name = this.props.item.name;
     return(
-      <li key={id}>{name}</li>
+      <li key={id}>
+        {name}&nbsp;
+        <button type="button" data-id={id} onClick={this.props.remove}>✖</button>
+      </li>
     );
   }
 }
