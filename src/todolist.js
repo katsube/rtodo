@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ToDoItem from './todoitem';
+import PropTypes from 'prop-types';
 import './todolist.css';
 
 class ToDoList extends Component {
@@ -23,5 +24,10 @@ class ToDoList extends Component {
     }
   }
 }
+
+ToDoList.propTypes = {
+  data: PropTypes.array.isRequired,
+  remove: PropTypes.func.isRequired
+};
 
 export default ToDoList;

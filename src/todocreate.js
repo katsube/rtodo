@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 
 class ToDoCreate extends Component {
   constructor(props){
@@ -45,5 +46,9 @@ class ToDoCreate extends Component {
     );
   }
 }
+
+ToDoCreate.propTypes = {
+  onClick: PropTypes.func.isRequired
+};
 
 export default ToDoCreate;
