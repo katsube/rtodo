@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 
 class ToDoCreate extends Component {
   constructor(props){
@@ -9,6 +10,10 @@ class ToDoCreate extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount(){
+    ReactDOM.findDOMNode(this.refs.newtodo).focus();
   }
 
   handleChange(e){
@@ -34,7 +39,7 @@ class ToDoCreate extends Component {
   render(){
     return(
       <form onSubmit={this.handleSubmit}>
-        <input type="text" value={this.state.newtodo} onChange={this.handleChange}/>
+        <input type="text" ref="newtodo" value={this.state.newtodo} onChange={this.handleChange}/>
         <button>追加</button>
       </form>
     );
